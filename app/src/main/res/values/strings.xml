@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">App_SingleView</string>
+    <string name="egg" />
+    <string name="fries" />
+    <string name="bread" />
+    <string name="cheese" />
+    <string name="candy" />
+    <string name="rice" />
+    <string name="noodles" />
+    <string name="hotdog" />
+    <string name="Combination" />
+</resources>
