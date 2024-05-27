@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //SPLASH SCREEN
-
+        
+        //Variables connecting XML Elements to Kotlin File
         val button = findViewById(R.id.button) as Button
         val Cheese_b = findViewById(R.id.cheese) as ImageButton
         val Egg_b = findViewById(R.id.egg) as ImageButton
@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(){
         val Candy_b = findViewById(R.id.candy) as ImageButton
         val Hotdog_b = findViewById(R.id.hotdog) as ImageButton
 
+        //Boolean Variables
         var cheese = false
         var egg = false
         var fries = false
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity(){
         var candy = false
         var hotdog = false
 
+        //Event Listeners for Image Buttons
         Cheese_b.setOnClickListener {
             Toast.makeText(this, "CHEESE", Toast.LENGTH_LONG).show()
             cheese = true
@@ -73,9 +75,10 @@ class MainActivity : AppCompatActivity(){
             hotdog = true
         }
 
+        //Equals Button Event Listener
         button.setOnClickListener {
-            //dialog.setCanceledOnTouchOutside(true);
             showDialog(cheese, egg, fries, bread, rice, noodles, candy, hotdog);
+            //Code to reset the Boolean Variables
             cheese = false
             egg = false
             fries = false
@@ -86,15 +89,17 @@ class MainActivity : AppCompatActivity(){
             hotdog = false
         }
     }
-
+    
+    //Pop-up View Function
     private fun showDialog(cheese: Boolean, egg: Boolean, fries: Boolean, bread: Boolean, rice: Boolean, noodles: Boolean, candy: Boolean, hotdog: Boolean){
-        val mContext: Context = this //Assumes you are calling this from within an activity
+        val mContext: Context = this 
 
         val dialog = Dialog(mContext)
         dialog.setContentView(R.layout.popup_design);
         dialog.create()
         val Image = dialog.findViewById<View>(R.id.combinationImage) as ImageView
 
+        //Else If Statement Verifying what Image to show and Speech to Say depending on the buttons pressed
         if (egg == true){
             if (fries==true) {
                 Image.setImageResource(R.drawable.fries_egg);
@@ -222,11 +227,15 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
+        //Event listener to close Pop-Up Window
         Image.setOnClickListener{
             dialog.dismiss()
         }
+
         dialog.show()
     }
+    
+    //Audio Function
     private fun Speech(combination: String){
         tts=TextToSpeech(applicationContext, TextToSpeech.OnInitListener{
             if(it==TextToSpeech.SUCCESS) {
